@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Projects\\Tanya\\Tanya\\Tanya.csproj": {}
+  },
+  "projects": {
+    "E:\\Projects\\Tanya\\Tanya\\Tanya.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Projects\\Tanya\\Tanya\\Tanya.csproj",
+        "projectName": "Tanya",
+        "projectPath": "E:\\Projects\\Tanya\\Tanya\\Tanya.csproj",
+        "packagesPath": "C:\\Users\\Slime\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\Tanya\\Tanya\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Slime\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Discord.Net": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Discord.Net.Core": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Victoria": {
+              "target": "Package",
+              "version": "[5.1.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
