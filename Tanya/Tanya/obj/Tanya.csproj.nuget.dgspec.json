@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\Tanya\\Tanya\\Tanya.csproj": {}
+    "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\Tanya\\Tanya\\Tanya.csproj": {
+    "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\Tanya\\Tanya\\Tanya.csproj",
+        "projectUniqueName": "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj",
         "projectName": "Tanya",
-        "projectPath": "E:\\Projects\\Tanya\\Tanya\\Tanya.csproj",
-        "packagesPath": "C:\\Users\\Slime\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\Tanya\\Tanya\\obj\\",
+        "projectPath": "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj",
+        "packagesPath": "C:\\Users\\hunte\\.nuget\\packages\\",
+        "outputPath": "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Slime\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hunte\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,11 +22,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Discord.Net": {
               "target": "Package",
@@ -74,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
