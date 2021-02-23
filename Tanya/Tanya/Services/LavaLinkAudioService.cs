@@ -204,6 +204,7 @@ namespace Tanya.Services
                     looplist = false;
                     loop = false;
                     check = false;
+                    player.Queue.Clear();
                     await player.StopAsync();
                 }
                 await LogService.LogInfoAsync("MUSIC", $"Tanya has stopped playback.");

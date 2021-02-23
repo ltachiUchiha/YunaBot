@@ -1,9 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Slime\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Slime\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "C:\\Users\\hunte\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\hunte\\.nuget\\packages"
     ]
   }
 }
