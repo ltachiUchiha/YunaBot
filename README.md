@@ -1,1 +1,1 @@
-# Tanya_Bot
+# TanyaBot
