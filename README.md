@@ -26,8 +26,14 @@ A Small Discord Music Bot Built For Medium Servers.
 !!!(English language support may be added in the future)!!!
 
 ### Credits
+<<<<<<< HEAD
 * Programmers: [Itachi, aka me](https://github.com/ltachiUchiha).
 * Testers: [Itachi, aka me](https://github.com/ltachiUchiha).
 * Special thanks to [ES:CS discord server](https://discord.com/invite/AMFG7x6).
 =======
 # TanyaBot
+=======
+* Programmers: [Itachi, aka me] (https://github.com/ltachiUchiha).
+* Testers: [Itachi, aka me] (https://github.com/ltachiUchiha).
+* Special thanks to [ES:CS discord server] (https://discord.com/invite/AMFG7x6).
+>>>>>>> 14572a00b578541df17810655aaac3cecb42109e
