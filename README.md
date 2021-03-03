@@ -23,7 +23,7 @@ A Small Discord Music Bot Built For Medium Servers.
 ## Supporting languages
 
 * Russian (mostly)
-!!!(English language support may be added in the future)!!!
+* !!!(English language support may be added in the future)!!!
 
 ### Credits
 * Programmers: [Itachi, aka me](https://github.com/ltachiUchiha)
