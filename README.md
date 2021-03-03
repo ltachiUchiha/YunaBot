@@ -26,6 +26,6 @@ A Small Discord Music Bot Built For Medium Servers.
 * !!!(English language support may be added in the future)!!!
 
 ### Credits
-* Programmers: [Itachi, aka me](https://github.com/ltachiUchiha)
-* Testers: [Itachi, aka me](https://github.com/ltachiUchiha), [Soft](https://github.com/m4x150)
+* Programmers: [Itachi aka me](https://github.com/ltachiUchiha)
+* Testers: [Itachi aka me](https://github.com/ltachiUchiha), [Soft](https://github.com/m4x150)
 * Special thanks to [ES:CS discord server](https://discord.com/invite/AMFG7x6)
