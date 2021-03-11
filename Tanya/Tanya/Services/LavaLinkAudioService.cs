@@ -21,10 +21,8 @@ namespace Tanya.Services
         public bool looplist = false;
         public bool check = false;
 
-
         public LavaLinkAudioService(LavaNode lavaNode)
             => _lavaNode = lavaNode;
-
         public async Task<Embed> JoinAsync(IGuild guild, IVoiceState voiceState, ITextChannel textChannel)
         {
             if (_lavaNode.HasPlayer(guild))
@@ -47,7 +45,6 @@ namespace Tanya.Services
                 return await EmbedHandler.ErrorEmbed(ex.Message);
             }
         }
-
         public async Task<Embed> PlayAsync(SocketGuildUser user, IGuild guild, string query, IVoiceState voiceState, ITextChannel textChannel)
         {
             #region Join/Play
@@ -83,7 +80,6 @@ namespace Tanya.Services
             }
 
             var player = _lavaNode.GetPlayer(guild);
-            //LavaTrack track;
 
             try
             {
@@ -101,7 +97,7 @@ namespace Tanya.Services
                 if (player.Track != null && player.PlayerState is PlayerState.Playing || player.PlayerState is PlayerState.Paused)
                 {
                     player.Queue.Enqueue(track);
-                    await LogService.LogInfoAsync("MUSIC", $"\"{track.Title}\" has been added to the music queue.");
+                    await LogService .LogInfoAsync("MUSIC", $"\"{track.Title}\" has been added to the music queue.");
                     if (looplist is true)
                     {
                         return await EmbedHandler.BasicEmbed("🎵 Музыка", $"\"{track.Title}\" добавлен в очередь. \n\nLooplist: {looplist}", Color.Green);
@@ -116,7 +112,7 @@ namespace Tanya.Services
                 if (track.IsStream is true)
                 {
                     await player.PlayAsync(track);
-                    await LogService.LogInfoAsync("MUSIC", $"Tanya Now Playing: {track.Title}\nUrl: {track.Url}");
+                    await LogService .LogInfoAsync("MUSIC", $"Tanya Now Playing: {track.Title}\nUrl: {track.Url}");
                     return await EmbedHandler.BasicEmbed("🎵 Музыка", $"Сейчас Играет: \"{track.Title}\"\nТип: Стрим\nАвтор: {track.Author}\nUrl: {track.Url}", Color.Green);
                 }
 
@@ -130,8 +126,6 @@ namespace Tanya.Services
             }
 
         }
-
-
         public async Task<Embed> LeaveAsync(IGuild guild)
         {
             var player = _lavaNode.GetPlayer(guild);
@@ -153,7 +147,6 @@ namespace Tanya.Services
                 return await EmbedHandler.ErrorEmbed(ex.Message);
             }
         }
-
         public async Task<Embed> PauseAsync(IGuild guild)
         {
             var player = _lavaNode.GetPlayer(guild);
@@ -174,7 +167,6 @@ namespace Tanya.Services
                 return await EmbedHandler.ErrorEmbed(ex.Message);
             }
         }
-
         public async Task<Embed> ResumeAsync(IGuild guild)
         {
             var player = _lavaNode.GetPlayer(guild);
@@ -192,7 +184,6 @@ namespace Tanya.Services
                 return await EmbedHandler.ErrorEmbed(ex.Message);
             }
         }
-
         public async Task<Embed> StopAsync(IGuild guild)
         {
             var player = _lavaNode.GetPlayer(guild);
@@ -215,7 +206,6 @@ namespace Tanya.Services
                 return await EmbedHandler.ErrorEmbed(ex.Message);
             }
         }
-
         public async Task<Embed> SkipAsync(IGuild guild)
         {
             var player = _lavaNode.GetPlayer(guild);
@@ -239,19 +229,18 @@ namespace Tanya.Services
                                 check = true;
                                 currentTrack = player.Track;
                                 player.Queue.Enqueue(currentTrack);
-                                await player.SkipAsync();
                                 await LogService.LogInfoAsync("MUSIC", $"Skipped: \"{сurrenttrack.Title}\"");
+                                await player.SkipAsync();
                                 return await EmbedHandler.BasicEmbed("", $"⏭️ Я успешно пропустила \"{сurrenttrack.Title}\".", CreateConfig.Config.Tanya);
                             }
                             check = true;
+                            await LogService.LogInfoAsync("MUSIC", $"Skipped: \"{сurrenttrack.Title}\"");
                             await player.SkipAsync();
                             currentTrack = player.Track;
-                            await LogService.LogInfoAsync("MUSIC", $"Skipped: \"{сurrenttrack.Title}\"");
                             return await EmbedHandler.BasicEmbed("", $"⏭️ Я успешно пропустила \"{сurrenttrack.Title}\".", CreateConfig.Config.Tanya);
                         }
-
-                        await player.SkipAsync();
                         await LogService.LogInfoAsync("MUSIC", $"Skipped: \"{сurrenttrack.Title}\"");
+                        await player.SkipAsync();
                         return await EmbedHandler.BasicEmbed("", $"⏭️ Я успешно пропустила \"{сurrenttrack.Title}\".", CreateConfig.Config.Tanya);
                     }
                     catch (Exception ex)
@@ -266,7 +255,6 @@ namespace Tanya.Services
                 return await EmbedHandler.ErrorEmbed(ex.Message);
             }
         }
-
         public async Task<Embed> ListAsync(IGuild guild)
         {
             var descriptionBuilder = new StringBuilder();
@@ -305,6 +293,37 @@ namespace Tanya.Services
                 return await EmbedHandler.ErrorEmbed(ex.Message);
             }
 
+        }
+        public async Task<Embed> LoopAsync(IGuild guild)
+        {
+            var player = _lavaNode.GetPlayer(guild);
+
+            try
+            {
+                if (looplist is true)
+                {
+                    return await EmbedHandler.ErrorEmbed("⚠️ Выключите looplist!");
+                }
+                if (loop is true)
+                {
+                    loop = false;
+                    check = false;
+                    await LogService.LogInfoAsync("MUSIC", $"Loop disabled.");
+                    return await EmbedHandler.BasicEmbed("", "❌ Loop выключен.", CreateConfig.Config.Tanya);
+                }
+
+                currentTrack = player.Track;
+
+                loop = true;
+                await LogService.LogInfoAsync("MUSIC", $"Loop enabled. Looped track: {currentTrack.Title}");
+                return await EmbedHandler.BasicEmbed("", $"🔂 Loop включен.", Color.Green);
+                //return await EmbedHandler.BasicEmbed("Музыка", $"Loop включен. \nЗа жопу схватили: \"{currentTrack.Title}\"");
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                return await EmbedHandler.ErrorEmbed(ex.Message);
+            }
         }
         public async Task<Embed> LoopListAsync(IGuild guild)
         {
@@ -352,39 +371,6 @@ namespace Tanya.Services
             }
 
         }
-
-        public async Task<Embed> LoopAsync(IGuild guild)
-        {
-            var player = _lavaNode.GetPlayer(guild);
-
-            try
-            {
-                if (looplist is true)
-                {
-                    return await EmbedHandler.ErrorEmbed("⚠️ Выключите looplist!");
-                }
-                if (loop is true)
-                {
-                    loop = false;
-                    check = false;
-                    await LogService.LogInfoAsync("MUSIC", $"Loop disabled.");
-                    return await EmbedHandler.BasicEmbed("", "❌ Loop выключен.", CreateConfig.Config.Tanya);
-                }
-
-                currentTrack = player.Track;
-
-                loop = true;
-                await LogService.LogInfoAsync("MUSIC", $"Loop enabled. Looped track: {currentTrack.Title}");
-                return await EmbedHandler.BasicEmbed("", $"🔂 Loop включен.", Color.Green);
-                //return await EmbedHandler.BasicEmbed("Музыка", $"Loop включен. \nЗа жопу схватили: \"{currentTrack.Title}\"");
-
-            }
-            catch (InvalidOperationException ex)
-            {
-                return await EmbedHandler.ErrorEmbed(ex.Message);
-            }
-        }
-
         public async Task<Embed> VolumeAsync(IGuild guild, int volume)
         {
             var player = _lavaNode.GetPlayer(guild);
@@ -402,19 +388,19 @@ namespace Tanya.Services
                     await LogService.LogInfoAsync("MUSIC", $"Bot Volume set to: {volume}");
                     return await EmbedHandler.BasicEmbed("", $"🔇 Громкость была установлена на {volume}. Теперь меня не слышно.", CreateConfig.Config.Tanya);
                 }
-                if (volume > 1 && volume < 20)
+                if (volume >= 1 && volume <= 20)
                 {
                     await player.UpdateVolumeAsync((ushort)volume);
                     await LogService.LogInfoAsync("MUSIC", $"Bot Volume set to: {volume}");
                     return await EmbedHandler.BasicEmbed("", $"🔈 Громкость была установлена на {volume}.", CreateConfig.Config.Tanya);
                 }
-                if (volume > 20 && volume < 80)
+                if (volume >= 20 && volume <= 80)
                 {
                     await player.UpdateVolumeAsync((ushort)volume);
                     await LogService.LogInfoAsync("MUSIC", $"Bot Volume set to: {volume}");
                     return await EmbedHandler.BasicEmbed("", $"🔉 Громкость была установлена на {volume}.", CreateConfig.Config.Tanya);
                 }
-                if (volume > 80 && volume < 150)
+                if (volume >= 80 && volume <= 150)
                 {
                     await player.UpdateVolumeAsync((ushort)volume);
                     await LogService.LogInfoAsync("MUSIC", $"Bot Volume set to: {volume}");
@@ -428,7 +414,6 @@ namespace Tanya.Services
                 return await EmbedHandler.ErrorEmbed(ex.Message);
             }
         }
-
         public async Task TrackEnded(TrackEndedEventArgs args)
         {
             if (loop is true && check is false)

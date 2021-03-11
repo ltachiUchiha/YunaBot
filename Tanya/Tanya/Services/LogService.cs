@@ -1,36 +1,39 @@
 ﻿using Discord;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tanya.Services
 {
     public static class LogService
     {
-        public static async Task LogAsync(string src, LogSeverity severity, string message)
+        private static readonly Semaphore semaphore = new Semaphore(1, 1);
+        public static Task LogAsync(string src, LogSeverity severity, string message)
         {
+            semaphore.WaitOne();
             if (severity.Equals(null))
             {
                 severity = LogSeverity.Warning;
             }
-            await Append($"{SeverityToString(severity)}", GetConsoleColor(severity));
-            await Append($" [{SourceToString(src)}] ", ConsoleColor.DarkGray);
-
+            Task task;
+            task = Append($"{SeverityToString(severity)}", $" [{SourceToString(src)}] ", $"{message}\n", GetConsoleColor(severity));
             if (string.IsNullOrWhiteSpace(message))
-                return;
-            await Append($"{message}\n", ConsoleColor.White);
+                return task;
+            semaphore.Release();
+
+            return task;
         }
 
-        public static async Task LogCritAsync(string source, string message)
-            => await LogAsync(source, LogSeverity.Critical, message);
+        public static Task LogCritAsync(string source, string message)
+            => LogAsync(source, LogSeverity.Critical, message);
 
-        public static async Task LogInfoAsync(string source, string message)
-            => await LogAsync(source, LogSeverity.Info, message);
-
-        private static async Task Append(string message, ConsoleColor color)
+        public static Task LogInfoAsync(string source, string message)
+            => LogAsync(source, LogSeverity.Info, message);
+        private static Task Append(string severity, string source, string message, ConsoleColor color)
         {
-            await Task.Run(() => {
+            return Task.Run(() => {
                 Console.ForegroundColor = color;
-                Console.Write(message);
+                Console.Write(severity + source + message);
             });
         }
 

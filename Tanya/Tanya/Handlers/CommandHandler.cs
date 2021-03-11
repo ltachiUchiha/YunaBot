@@ -69,7 +69,7 @@ namespace Tanya.Handlers
             else
             {
                 var result = _commands.ExecuteAsync(context, argPos, _services, MultiMatchHandling.Best);
-
+                //
                 /* Report any errors if the command didn't execute succesfully. */
                 //if (!result.Result.IsSuccess)
                 //{
@@ -81,9 +81,9 @@ namespace Tanya.Handlers
             }
         }
 
-#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
+//#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
         public async Task CommandExecutedAsync(Optional<CommandInfo> command, ICommandContext context, IResult result)
-#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
+//#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
         {
             // command is unspecified when there was a search failure (command not found)
             if (!command.IsSpecified)
@@ -93,9 +93,8 @@ namespace Tanya.Handlers
             if (result.IsSuccess)
                 return;
             //TODO: delete this heresy 
-            /* the command failed, let's notify the user that something happened. 
+            //the command failed, let's notify the user that something happened. 
             await context.Channel.SendMessageAsync($"error: {result}");
-            */
         }
 
         // Used whenever we want to log something to the Console. 
