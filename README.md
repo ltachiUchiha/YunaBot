@@ -1,4 +1,4 @@
-# Tanya_Bot
+# Tanya - Discord Bot
 
 A Small Discord Music Bot Built For Medium Servers.
 
