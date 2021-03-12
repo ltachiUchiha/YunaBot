@@ -24,7 +24,7 @@ namespace Tanya.Handlers
             {
                 json = JsonConvert.SerializeObject(CreateNewConfig(), Formatting.Indented);
                 File.WriteAllText("config.json", json, new UTF8Encoding(false));
-                await LogService.LogAsync("Bot", LogSeverity.Error, "No config file was found. A new one was created, please fill config file and restart the bot.");
+                await LogService.LogCritAsync("Bot", "No config file was found. A new one was created, please fill config file and restart the bot.");
                 await Task.Delay(-1);
             }
 

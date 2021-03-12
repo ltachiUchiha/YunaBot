@@ -23,13 +23,5 @@ namespace Tanya.Handlers
                 .WithColor(Color.Red).Build());
             return embed;
         }
-        public static async Task<Embed> NoticeEmbed(string title, string description, Color color)
-        {
-            var embed = await Task.Run(() => (new EmbedBuilder()
-                .WithTitle(title)
-                .WithDescription(description)
-                .WithColor(color).Build()));
-            return embed;
-        }
     }
 }

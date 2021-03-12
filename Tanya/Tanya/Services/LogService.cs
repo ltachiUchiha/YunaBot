@@ -23,10 +23,10 @@ namespace Tanya.Services
 
             return task;
         }
-
+        // Used whenever we want to log something critical to the Console in the code. 
         public static Task LogCritAsync(string source, string message)
             => LogAsync(source, LogSeverity.Critical, message);
-
+        // Used whenever we want to log some information to the Console in the code. 
         public static Task LogInfoAsync(string source, string message)
             => LogAsync(source, LogSeverity.Info, message);
         private static Task Append(string severity, string source, string message, ConsoleColor color)
@@ -40,7 +40,7 @@ namespace Tanya.Services
         // The Normal Source Input To Something Neater
         private static string SourceToString(string src)
         {
-            return (src.ToLower()) switch
+            return src.ToLower() switch
             {
                 "discord" => "DISCD",
                 "victoria" => "VICTR",
@@ -76,11 +76,11 @@ namespace Tanya.Services
             return severity switch
             {
                 LogSeverity.Critical => ConsoleColor.Red,
-                LogSeverity.Debug => ConsoleColor.Magenta,
+                LogSeverity.Debug => ConsoleColor.DarkMagenta,
                 LogSeverity.Error => ConsoleColor.DarkRed,
-                LogSeverity.Info => ConsoleColor.Green,
+                LogSeverity.Info => ConsoleColor.DarkGray,
                 LogSeverity.Verbose => ConsoleColor.DarkCyan,
-                LogSeverity.Warning => ConsoleColor.Yellow,
+                LogSeverity.Warning => ConsoleColor.DarkYellow,
                 _ => ConsoleColor.White,
             };
         }

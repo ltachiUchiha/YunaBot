@@ -44,7 +44,7 @@ namespace Tanya.Handlers
         private Task HandleCommandAsync(SocketMessage socketMessage)
         {
             var argPos = 0;
-            //Check that the message is a valid command, ignore everything we don't care about. (Private message, messages from other Bots, Etc)
+            // Check that the message is a valid command, ignore everything we don't care about. (Private message, messages from other Bots, Etc)
             if (!(socketMessage is SocketUserMessage message) || message.Author.IsBot || message.Author.IsWebhook || message.Channel is IPrivateChannel)
                 return Task.CompletedTask;
 
@@ -55,13 +55,13 @@ namespace Tanya.Handlers
             // Create the CommandContext for use in modules.
             var context = new SocketCommandContext(_client, socketMessage as SocketUserMessage);
 
-            /* Check if the channel ID that the message was sent from is in our Config - Blacklisted Channels. */
+            // Check if the channel ID that the message was sent from is in our Config - Blacklisted Channels.
             var blacklistedChannelCheck = from a in CreateConfig.Config.BlacklistedChannels
                                           where a == context.Channel.Id
                                           select a;
             var blacklistedChannel = blacklistedChannelCheck.FirstOrDefault();
 
-            /* If the Channel ID is in the list of blacklisted channels. Ignore the command. */
+            // If the Channel ID is in the list of blacklisted channels. Ignore the command.
             if (blacklistedChannel == context.Channel.Id)
             {
                 return Task.CompletedTask;
@@ -69,39 +69,39 @@ namespace Tanya.Handlers
             else
             {
                 var result = _commands.ExecuteAsync(context, argPos, _services, MultiMatchHandling.Best);
-                //
-                /* Report any errors if the command didn't execute succesfully. */
-                //if (!result.Result.IsSuccess)
-                //{
-                //    context.Channel.SendMessageAsync(result.Result.ErrorReason);
-                //}
 
-                /* If everything worked fine, command will run. */
+                // Report any errors if the command didn't execute succesfully. 
+                /*
+                if (!result.Result.IsSuccess)
+                {
+                    context.Channel.SendMessageAsync(result.Result.ErrorReason);
+                }
+                */
+                // If everything worked fine, command will run.
                 return result;
             }
         }
 
-//#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
         public async Task CommandExecutedAsync(Optional<CommandInfo> command, ICommandContext context, IResult result)
-//#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
         {
             // command is unspecified when there was a search failure (command not found)
             if (!command.IsSpecified)
+            {
+                await EmbedHandler.ErrorEmbed($"Ой, кажется, такой команды нет. Список всех команд можно получить, написав команду {CreateConfig.Config.DefaultPrefix}help");
                 return;
-
+            }
             // the command was succesful, we don't care about this result
             if (result.IsSuccess)
                 return;
-            //TODO: delete this heresy 
             //the command failed, let's notify the user that something happened. 
-            await context.Channel.SendMessageAsync($"error: {result}");
+            await EmbedHandler.ErrorEmbed($"Ой, кажется, где то в команде ошибка. Вот сама ошибка: {result}");
         }
 
         // Used whenever we want to log something to the Console. 
         private Task LogAsync(LogMessage log)
         {
             Console.WriteLine(log.ToString());
-
+            
             return Task.CompletedTask;
         }
     }
