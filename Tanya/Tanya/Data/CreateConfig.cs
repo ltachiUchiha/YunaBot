@@ -38,6 +38,7 @@ namespace Tanya.Handlers
             DiscordToken = "Null",
             DefaultPrefix = "!",
             Status = "Change me",
+            Activity = ActivityType.Listening,
             BlacklistedChannels = new List<ulong>()
         };
     }

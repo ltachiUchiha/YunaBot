@@ -9,9 +9,10 @@ namespace Tanya.DataStructs
         public string DefaultPrefix { get; set; }
         public string Status { get; set; }
 
+        public ActivityType Activity { get; set; }
+
         public readonly Color Tanya = new Color(227, 117, 108);
 
-        public ActivityType Type = ActivityType.Listening;
         public List<ulong> BlacklistedChannels { get; set; }
 
     }
