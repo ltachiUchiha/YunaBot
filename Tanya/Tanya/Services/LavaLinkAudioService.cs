@@ -91,34 +91,59 @@ namespace Tanya.Services
                 {
                     return await EmbedHandler.ErrorEmbed($"⚠️ Я не смогла найти \"{query}\".");
                 }
-
-                track = search.Tracks.FirstOrDefault();
-
-                if (player.Track != null && player.PlayerState is PlayerState.Playing || player.PlayerState is PlayerState.Paused)
+                if (search.LoadStatus == LoadStatus.PlaylistLoaded)
                 {
-                    player.Queue.Enqueue(track);
-                    await LogService .LogInfoAsync("MUSIC", $"\"{track.Title}\" has been added to the music queue.");
-                    if (looplist is true)
+                    for (int trackNumber = 0; trackNumber < search.Tracks.Count; trackNumber++)
                     {
-                        return await EmbedHandler.BasicEmbed("🎵 Музыка", $"\"{track.Title}\" добавлен в очередь. \n\nLooplist: {looplist}", Color.Green);
+                        track = search.Tracks.ElementAt(trackNumber);
+                        if (player.Track != null && player.PlayerState is PlayerState.Playing || player.PlayerState is PlayerState.Paused)
+                        {
+                            player.Queue.Enqueue(track);
+                        }
+                        else
+                        {
+                            if (trackNumber == 0)
+                            {
+                                await player.PlayAsync(track);
+                            }
+                            else
+                            {
+                                player.Queue.Enqueue(track);
+                            }   
+                        }
                     }
-                    else if (loop is true)
-                    {
-                        return await EmbedHandler.BasicEmbed("🎵 Музыка", $"\"{track.Title}\" добавлен в очередь. \n\nLoop: {loop}", Color.Green);
-                    }
-                    return await EmbedHandler.BasicEmbed("🎵 Музыка", $"\"{track.Title}\" добавлен в очередь. \n\n", Color.Green);
+                    return await EmbedHandler.BasicEmbed("🎵 Музыка", $"Плейлист \"{search.Playlist.Name}\" успешно добавлен в очередь.", Color.Green);
                 }
-
-                if (track.IsStream is true)
+                else
                 {
+                    track = search.Tracks.FirstOrDefault();
+
+                    if (player.Track != null && player.PlayerState is PlayerState.Playing || player.PlayerState is PlayerState.Paused)
+                    {
+                        player.Queue.Enqueue(track);
+                        await LogService .LogInfoAsync("MUSIC", $"\"{track.Title}\" has been added to the music queue.");
+                        if (looplist is true)
+                        {
+                            return await EmbedHandler.BasicEmbed("🎵 Музыка", $"\"{track.Title}\" добавлен в очередь. \n\nLooplist: {looplist}", Color.Green);
+                        }
+                        else if (loop is true)
+                        {
+                            return await EmbedHandler.BasicEmbed("🎵 Музыка", $"\"{track.Title}\" добавлен в очередь. \n\nLoop: {loop}", Color.Green);
+                        }
+                        return await EmbedHandler.BasicEmbed("🎵 Музыка", $"\"{track.Title}\" добавлен в очередь.", Color.Green);
+                    }
+
+                    if (track.IsStream is true)
+                    {
+                        await player.PlayAsync(track);
+                        await LogService .LogInfoAsync("MUSIC", $"Tanya Now Playing: {track.Title}\nUrl: {track.Url}");
+                        return await EmbedHandler.BasicEmbed("🎵 Музыка", $"Сейчас Играет: \"{track.Title}\"\nТип: Стрим\nАвтор: {track.Author}\nUrl: {track.Url}", Color.Green);
+                    }
+
                     await player.PlayAsync(track);
-                    await LogService .LogInfoAsync("MUSIC", $"Tanya Now Playing: {track.Title}\nUrl: {track.Url}");
-                    return await EmbedHandler.BasicEmbed("🎵 Музыка", $"Сейчас Играет: \"{track.Title}\"\nТип: Стрим\nАвтор: {track.Author}\nUrl: {track.Url}", Color.Green);
+                    await LogService.LogInfoAsync("MUSIC", $"Tanya Now Playing: {track.Title}\nUrl: {track.Url}");
+                    return await EmbedHandler.BasicEmbed("🎵 Музыка", $"Сейчас Играет: \"{track.Title}\"\nТип: Видео\nДлительность: {track.Duration}\nАвтор: {track.Author}\nUrl: {track.Url}", Color.Green);
                 }
-
-                await player.PlayAsync(track);
-                await LogService.LogInfoAsync("MUSIC", $"Tanya Now Playing: {track.Title}\nUrl: {track.Url}");
-                return await EmbedHandler.BasicEmbed("🎵 Музыка", $"Сейчас Играет: \"{track.Title}\"\nТип: Видео\nДлительность: {track.Duration}\nАвтор: {track.Author}\nUrl: {track.Url}", Color.Green);
             }
             catch (Exception ex)
             {

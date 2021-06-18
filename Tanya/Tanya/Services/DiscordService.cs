@@ -69,7 +69,6 @@ namespace Tanya.Services
             try
             {
                 await _lavaNode.ConnectAsync();
-                //await _client.SetGameAsync(GlobalData.Config.Status);
                 await _client.SetActivityAsync(new Game (CreateConfig.Config.Status, CreateConfig.Config.Activity));
             }
             catch (Exception ex)

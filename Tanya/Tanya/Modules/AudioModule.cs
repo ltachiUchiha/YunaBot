@@ -75,8 +75,8 @@ namespace Tanya.Modules
         [Command("looplist")]
         [Name("LoopList"), Summary("Loops all list.")]
         public async Task LoopListAsync()
-    => await ReplyAsync(
-        embed: await AudioService.LoopListAsync(Context.Guild));
+            => await ReplyAsync(
+                embed: await AudioService.LoopListAsync(Context.Guild));
 
         [Command("volume")]
         [Name("Volume"), Summary("Changes the volume of the bot (from 0 to 150).")]

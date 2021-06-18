@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj": {}
+    "E:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj": {}
   },
   "projects": {
-    "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj": {
+    "E:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj",
+        "projectUniqueName": "E:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj",
         "projectName": "Tanya",
-        "projectPath": "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj",
-        "packagesPath": "C:\\Users\\hunte\\.nuget\\packages\\",
-        "outputPath": "D:\\Local\\Tanya_Bot\\Tanya\\Tanya\\obj\\",
+        "projectPath": "E:\\Local\\Tanya_Bot\\Tanya\\Tanya\\Tanya.csproj",
+        "packagesPath": "C:\\Users\\Itachi\\.nuget\\packages\\",
+        "outputPath": "E:\\Local\\Tanya_Bot\\Tanya\\Tanya\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hunte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Itachi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
