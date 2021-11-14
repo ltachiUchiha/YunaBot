@@ -1,12 +1,12 @@
-# Tanya - Discord Bot
+# Yuna - Discord Bot
 
 A Small Discord Music Bot Built For Medium Servers.
 
 ## Built With
 
-* [Discord.Net (Version - 2.3.0)](https://github.com/RogueException/Discord.Net) - The API wrapper for Discord.
-* [DotNet Core (Version - 3.1)](https://dotnet.microsoft.com/download/dotnet-core/2.2) - Dotnet version.
-* [Victoria (Version - 5.1.11)](https://github.com/Yucked/Victoria) - LavaLink wrapper for Discord.Net.
+* [Discord.Net (Version - 2.4.0)](https://github.com/RogueException/Discord.Net) - The API wrapper for Discord.
+* [DotNet Core (Version - 2.4.0)](https://dotnet.microsoft.com/download/dotnet-core/2.2) - Dotnet version.
+* [Victoria (Version - 5.1.9)](https://github.com/Yucked/Victoria) - LavaLink wrapper for Discord.Net.
 
 ## Musical Features
 
@@ -22,8 +22,7 @@ A Small Discord Music Bot Built For Medium Servers.
 
 ## Supporting languages
 
-* Russian (mostly)
-* !!!(English language support may be added in the future)!!!
+* English
 
 ### Credits
 * Programmers: [Itachi aka me](https://github.com/ltachiUchiha)
